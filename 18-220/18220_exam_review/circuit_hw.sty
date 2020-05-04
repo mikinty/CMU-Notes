@@ -1,0 +1,194 @@
+%%%%%%%%%%%%%%%%%%% Packages %%%%%%%%%%%%%%%%%%%
+\RequirePackage[margin=1in]{geometry}
+\RequirePackage{amsmath, amsthm, amssymb}
+\RequirePackage{bodegraph}
+\RequirePackage[american voltages, arrowmos]{circuitikz}
+\RequirePackage{enumitem}
+\RequirePackage{fancyhdr} % for the top header
+\RequirePackage{float}
+\RequirePackage{fancyhdr}
+\RequirePackage{graphicx}
+\PassOptionsToPackage{hyphens}{url}\RequirePackage{hyperref} % allow for URL wrapping
+\RequirePackage{lastpage} % just for last page
+\RequirePackage{mathtools}
+\RequirePackage[super]{nth}
+\RequirePackage{physics}
+\RequirePackage{siunitx} % nice units formatting
+\RequirePackage{subfig}
+\RequirePackage{tikz}
+\RequirePackage{verbatim}
+
+\graphicspath{{images/}}
+
+%%%%%%%%%%%%%%%%%%% HEADERS CHANGE FOR EACH PROJECT %%%%%%%%%%%%%%%%%%%
+\def\AUTHOR{Michael You}
+\def\TITLE{18-220 Exam Review}
+
+\author{\AUTHOR}
+\title{\TITLE}
+\date{}
+
+%% Fancy headers at top of each page
+\fancyhf{}
+\lhead{\TITLE}
+\rhead{\AUTHOR}
+\fancyfoot[C]{\thepage}
+
+%%%%%%%%%%%%%%%%%%% Custom math shortcuts %%%%%%%%%%%%%%%%%%%
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+\DeclarePairedDelimiter{\paren}{(}{)}
+\DeclarePairedDelimiter{\bracken}{[}{]}
+\DeclarePairedDelimiter{\bracens}{\{}{\}}
+\newcommand{\pa}[1]{\paren*{#1}}
+\newcommand{\pbra}[1]{\bracken*{#1}}
+\newcommand{\pbrc}[1]{\bracens*{#1}}
+\newcommand{\db}[1]{\llbracket{#1}\rrbracket}
+\newcommand{\bangle}[1]{\left\langle #1 \right\rangle}
+
+%%% Useful shortcuts %%%
+\newcommand{\te}[1]{\texttt{#1}} % for programming font
+\newcommand{\eq}{=}              % Use in SIUNITX
+\newcommand{\ps}{\mathbin{\|}}   % parallel resistors
+\def\checkmark{{\tikz\fill[scale=0.4](0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;}\hspace{0.1in}}
+\newcommand{\CR}{\color{red}}
+\newcolumntype{C}{>{$}c<{$}}     % math-mode version of "l" column type
+
+%%%%%%%%%%%%%%%%%%% For circuit equations %%%%%%%%%%%%%%%%%%%
+%% Transistor fundamentals
+\newcommand{\Cox}{C_\text{ox}}
+\newcommand{\mn}{\mu_\text{n}}
+% \newcommand{\mp}{\mu_\text{p}}
+\newcommand{\Kn}{\mu_\text{n}C_\text{ox}\frac{W}{L}}
+\newcommand{\Kp}{\mu_\text{p}C_\text{ox}\frac{W}{L}}
+
+%% Large signal
+\newcommand{\VIN}{V_\text{IN}}
+\newcommand{\Vin}{V_\text{in}}
+\newcommand{\VI}{V_\text{I}}
+\newcommand{\Vi}{V_\text{in}}
+\newcommand{\VOUT}{V_\text{OUT}}
+\newcommand{\Vout}{V_\text{out}}
+\newcommand{\VO}{V_\text{O}}
+\newcommand{\Vo}{V_\text{o}}
+\newcommand{\VSS}{V_\text{SS}}
+\newcommand{\VDD}{V_\text{DD}}
+\newcommand{\IIN}{I_\text{IN}}
+\newcommand{\VTH}{V_\text{TH}}
+
+\newcommand{\VD}{V_\text{D}}
+\newcommand{\VDS}{V_\text{DS}}
+\newcommand{\VG}{V_\text{G}}
+\newcommand{\VGS}{V_\text{GS}}
+\newcommand{\VS}{V_\text{S}}
+\newcommand{\VSG}{V_\text{SG}}
+
+\newcommand{\VBIAS}{V_\text{BIAS}}
+\newcommand{\VOV}{V_\text{OV}}
+\newcommand{\VDC}{V_\text{DC}}
+\newcommand{\VGSDC}{V_\text{GSDC}}
+\newcommand{\VDSDC}{V_\text{DSDC}}
+\newcommand{\ID}{I_\text{D}}
+\newcommand{\IDS}{I_\text{DS}}
+\newcommand{\IS}{I_\text{S}}
+
+% Small signal
+\newcommand{\vi}{v_\text{i}}
+\newcommand{\vin}{v_\text{in}}
+\newcommand{\vo}{v_\text{o}}
+\newcommand{\vout}{v_\text{out}}
+
+\newcommand{\id}{i_\text{d}}
+\newcommand{\ids}{i_\text{ds}}
+\newcommand{\vd}{v_\text{d}}
+\newcommand{\vds}{v_\text{ds}}
+\newcommand{\vg}{v_\text{g}}
+\newcommand{\vgs}{v_\text{gs}}
+\newcommand{\vgd}{v_\text{gd}}
+\newcommand{\vs}{v_\text{s}}
+\newcommand{\vsd}{v_\text{sd}}
+\newcommand{\vsg}{v_\text{sg}}
+
+\newcommand{\rds}{r_\text{ds}}
+
+% Extras
+\newcommand{\ZIN}{Z_\text{IN}}
+\newcommand{\VTEST}{V_\text{test}}
+\newcommand{\ITEST}{I_\text{test}}
+
+\newcommand{\jw}{j\omega}
+\newcommand{\CEQ}{C_\text{eq}}
+\newcommand{\CBIG}{C_\text{big}}
+\newcommand{\GEQ}{G_\text{eq}}
+\newcommand{\REQ}{R_\text{eq}}
+\newcommand{\IEQ}{I_\text{eq}}
+\newcommand{\VOC}{V_\text{OC}}
+\newcommand{\VT}{V_\text{T}}
+\newcommand{\ISC}{I_\text{SC}}
+
+% SIUNITX
+\sisetup{quotient-mode=fraction} % Output a/b as \frac{a}{b}
+\sisetup{per-mode=symbol}        % Output \per as / instead of ^-1
+\DeclareSIUnit\decade{dec}       % For Bode plots
+
+% circuitikz setup
+\ctikzset{bipoles/capacitor/height=0.4}
+\ctikzset{bipoles/resistor/height=0.3}
+\ctikzset{bipoles/resistor/width=0.5}
+\ctikzset{monopoles/ground/width=0.15}
+
+%%%%%%%%%%%%%%%%%%% CODE ENV %%%%%%%%%%%%%%%%%%%
+\RequirePackage{listings, lstautogobble}
+\RequirePackage{color}
+\RequirePackage[T1]{fontenc}
+
+% Colors
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+% Macro to select a scaled-down version of Bera Mono
+\makeatletter
+\newcommand\BeraMonottfamily{%
+  \def\fvm@Scale{0.80}% scales the font down
+  \fontfamily{fvm}\selectfont% selects the Bera Mono font
+}
+\makeatother
+
+% Languages
+\lstdefinelanguage{ISCAS89}
+  {
+    morekeywords={
+      INPUT, OUTPUT, DFF, AND, NAND, OR, NOR,
+      XOR, XNOR, NOT, BUFF
+  },
+  morecomment=[l][\color{mygreen}]{\#},
+  sensitive=false % keywords are not case-sensitive
+}
+
+\lstset{ 
+  autogobble=true
+  backgroundcolor=\color{white},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}; should come as last argument
+  basicstyle=\BeraMonottfamily,        % the size of the fonts that are used for the code
+  breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+  breaklines=true,                 % sets automatic line breaking
+  captionpos=b,                    % sets the caption-position to bottom
+  commentstyle=\color{mygreen},    % comment style
+  columns=fullflexible,
+  deletekeywords={...},            % if you want to delete keywords from the given language
+  % escapeinside={\%*}{*)},        % if you want to add LaTeX within your code
+  extendedchars=false,             % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+  frame=single,
+  keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+  keywordstyle=\color{blue},       % keyword style
+  % morekeywords={*,...},          % if you want to add more keywords to the set, I would recommend just defining a new language
+  numbersep=5pt,                   % how far the line-numbers are from the code
+  numberstyle=\footnotesize\color{mygray}\ttfamily, % the style that is used for the line-numbers
+  rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+  showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+  showstringspaces=false,          % underline spaces within strings only
+  showtabs=false,                  % show tabs within strings adding particular underscores
+  stringstyle=\color{mymauve},     % string literal style
+  tabsize=2,	                   % sets default tabsize to 2 spaces
+  title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title  
+}

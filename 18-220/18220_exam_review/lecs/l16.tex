@@ -1,0 +1,72 @@
+\subsection*{Lecture 16/17}
+There's some review on bode plots but the main focus for 
+this one should be op-amp limitations and how feedback comes in 
+for analysis of non-ideal opamps. This is also a meaty topic 
+for exam questions.
+
+\begin{enumerate}
+  \item Describe the assumptions for an ideal opamp.
+  \item Why would the opamp behavior change with temperature variation?
+  \item Why do we say an ideal op-amp is like a voltage controlled voltage source (VCVS)?
+  \item Why do we not want positive gain at \SI{180}{\degree}?
+  \item Draw a general feedback diagram with labels, and derive the equation for $\vo/\vi$
+  \item Describe the process for finding the following. Draw diagrams too!
+  \begin{enumerate}
+    \item Loop gain
+    \item Open loop gain
+    \item Closed loop gain
+    \item Write the equation that relates LG, OLG, CLG (Black's formula)
+  \end{enumerate}
+  \item How can compensation capacitors help with stability?
+  \item Write the feedback functions for a Butterworth Filter
+  \begin{figure}[H]
+    \centering
+    \begin{circuitikz}
+      \draw (0,0) node[op amp, yscale=-1] (opamp) {}
+      (opamp.-) to[short] ++(0,-1) node(ON) {}
+      ;
+
+      \draw (opamp.+) 
+      to[short] ++(-1,0) node(V2) {}
+      to[C=$C_2$] ++(-1.5,0) node(V1) {}
+      to[R=$R_1$] ++(-2,0)
+      node[left] {$\vi$}
+      ;
+      
+      \draw 
+      (V1) 
+      to[R=$R_2$] ++(0,1.5)
+      -| (opamp.out)
+      (V1)
+      to[C=$C_1$] ++(0,-3)
+      to[short] ($(V2) + (0,-3)$)
+      node (GN) [sground] {}
+      (V2)
+      to[R=$R_3$] (GN)
+      ;
+
+      \draw
+      (GN)
+      to[short] (opamp.- |- 1, -2.5)
+      to[R=$R_a$] (ON)
+      to[R=$R_b$] (opamp.out |- 1, -1.5)
+      to[short] (opamp.out)
+      to[short] ++(0.5, 0)
+      node[right] {$\vo$}
+      ;
+    \end{circuitikz}
+    \caption{Butterworth Filter}
+    \label{l16:butterworth}
+  \end{figure}
+  \begin{enumerate}
+    \item OLG
+    \item LG
+    \item CLG
+    \item Ideal opamp gain
+  \end{enumerate}
+  \item For an ideal opamp, what do we want of the
+  \begin{enumerate}
+    \item Input impedance
+    \item Output impedance
+  \end{enumerate}
+\end{enumerate}

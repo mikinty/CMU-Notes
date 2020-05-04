@@ -1,0 +1,87 @@
+\subsection*{Lecture 15}
+Important lecture as bode plots/transfer functions/feedback are fundamental
+to this entire unit. Know how to draw bode plots. If you have your Bode plots down,
+they are free points on an exam. 
+
+\begin{enumerate}
+  \item Using an op-amp and R, L, C, make
+  \begin{enumerate}
+    \item A low-pass filter
+    \item A high-pass filter
+    \item A bandpass filter
+  \end{enumerate}
+  \item Why do op-amp filters allow us to concatenate filters together?
+  \item What is a limitation of lower-order filters, and why might we want to use a higher-order filter?
+  \item Given 
+  \begin{equation}
+    \frac{
+      10 \jw (1 + \frac{\jw}{100})
+    }{
+      (1 + \frac{\jw}{10})(1 + \frac{\jw}{10^4})(1 + \frac{\jw}{10^4})
+    },
+  \end{equation}
+  find the
+  \begin{enumerate}
+    \item Gain at $\omega = \SI{1}{\radian\per\second}$
+    \item Gain at $\omega = \SI{100}{\kilo\hertz}$
+    \item List all the poles (including multiplicity)
+    \item List all the zeros (including multiplicity)
+    \item Sketch the Bode plots for both magnitude and phase
+    \item What is the phase and gain margin?
+  \end{enumerate}
+  \item For the following circuit, 
+  \begin{figure}[H]
+    \centering
+    \begin{circuitikz}
+      \draw (0,0) node[op amp] (opamp1) {}
+      ($(opamp1.out) + (2,0.5)$) node[op amp] (opamp2) {}
+      ($(opamp2.out) + (3,-0.5)$) node[op amp] (opamp3) {}
+      ;
+
+      \draw
+      (opamp1.-)
+      to[R=$R_1$] ++(-2, 0)
+      node[left] {$\Vin$}
+      (opamp1.+) node[sground] {}
+      (opamp1.-) 
+      to[short] ++(0,1)
+      to[C=$C_1$] (opamp1.out |- 1, 1.5)
+      to[short] (opamp1.out)
+      (opamp1.-) 
+      to[short] ++(0,2)
+      to[R=$R_2$] (opamp1.out |- 1,2.5)
+      to[short] (opamp1.out)
+      (opamp1.out) 
+      to[short] (opamp2.+)
+      ;
+
+      \draw (opamp2.-)
+      to[short] ++(0,1)
+      to[R=$R_3$] ++(0,1)
+      node[sground, rotate=180] {}
+      (opamp2.-)
+      to[short] ++(0,1)
+      to[L=$L_1$] (opamp2.out |- 1, 2)
+      to[short] (opamp2.out)
+      to[L=$L_2$] (opamp3.-)
+      ;
+
+      \draw (opamp3.+) node[sground] {}
+      (opamp3.-) 
+      to[short] ++(0,1)
+      to[C=$C_2$] (opamp3.out |- 1, 1.5)
+      to[short] (opamp3.out)
+      to[short] ++(1,0) 
+      node[right] {$\Vout$}
+      ;
+    \end{circuitikz}
+    \label{l15:opamp}
+  \end{figure}
+  \begin{enumerate}
+    \item Find the transfer function.
+    \item Find all poles an zeros.
+    \item What type of filter is this?
+    \item Draw the Bode plot for magnitude and phase
+    \item What is the phase and gain margin?
+  \end{enumerate}
+\end{enumerate}

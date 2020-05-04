@@ -1,0 +1,41 @@
+\subsection*{Lecture 19}
+Operating circuits at AC around a DC operating point, small signal analysis.
+
+\begin{enumerate}
+  %% Problem defines
+  \def\diodeCurrent{\SI{30}{\milli\ampere}}
+  \def\opPtA{\SI{5}{\volt}}
+  \def\opPtB{\SI{12}{\volt}}
+  \item Given the following circuit,
+  \begin{figure}[H]
+    \centering
+    \def\basex{0}
+    \def\basey{0}
+    \def\stretch{1.5}
+    \def\width{2}
+    \begin{circuitikz}
+      \draw 
+        (0,\basey) node[sground] {} to[sV, l=$\vin$]
+        (0,\basey+\stretch) to[V, l=$\VDC$, invert]
+        (0,\basey+2*\stretch) to[short]
+        (\basex+\width,\basey+2*\stretch) to[R=$R$]
+        (\basex+\width,\basey+\stretch) to[D*, l=$D$]
+        (\basex+\width,\basey) node[sground] {}
+      ;
+    \end{circuitikz}
+    \label{l19:diodeLinear}
+  \end{figure}
+  Assume the diode can be modified with the standard diode equation,
+  with $\VT = \SI{0.026}{\volt}, \IS=\SI{1e-12}{\ampere}$
+  \begin{enumerate}
+    \item If $\VDC = \opPtA$, find the required $R$ to achieve a bias current of
+    \diodeCurrent through the diode.
+    \item At this DC operating point, what is the change in current with respect to the
+    change in voltage?
+    \item What is the change in current with respect to the change in the \textit{operating voltage point}?
+    \item If we want to increase $\VDC = \opPtB$ and still maintain \diodeCurrent
+    through the diode, what resistor can we add in parallel to $R$ to get our desired operating point?
+    \item We observed two operating points in this problem, $\VDC = \opPtA, \opPtB$.
+    Which operating point gives a bigger current swing? 
+  \end{enumerate}
+\end{enumerate}
