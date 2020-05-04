@@ -1,0 +1,127 @@
+%%% Packages %%%
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage[arrowmos, american voltages]{circuitikz}
+\usepackage{enumitem}
+\usepackage{fancyhdr} % for the top header
+\usepackage{float}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\PassOptionsToPackage{hyphens}{url}\usepackage{hyperref} % allow for URL wrapping
+\usepackage{lastpage} % just for last page
+\usepackage{mathtools}
+\usepackage[super]{nth}
+\usepackage{physics}
+\usepackage{siunitx} % nice units formatting
+\usepackage{tikz}
+\usepackage{verbatim}
+
+% code env packages
+\usepackage{listings, lstautogobble}
+\usepackage{color}
+\usepackage[T1]{fontenc}
+
+\setlength\parindent{0pt}
+
+%%% HEADERS %%%
+\title{Newton's Approximation in Nonlinear Circuits}
+\author{Michael You}
+\date{January 30, 2019}
+
+\fancyhf{}
+\lhead{18-220: Newton's Approximation Method}
+\rhead{}
+\fancyfoot[C]{\thepage}
+
+% Environments
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+
+%%% Custom math shortcuts %%%
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+\DeclarePairedDelimiter{\paren}{(}{)}
+\DeclarePairedDelimiter{\bracken}{[}{]}
+\DeclarePairedDelimiter{\bracens}{\{}{\}}
+\newcommand{\pa}[1]{\paren*{#1}}
+\newcommand{\pbra}[1]{\bracken*{#1}}
+\newcommand{\pbrc}[1]{\bracens*{#1}}
+\newcommand{\db}[1]{\llbracket{#1}\rrbracket}
+\newcommand{\bangle}[1]{\left\langle #1 \right\rangle}
+
+%%% Useful shortcuts %%%
+\newcommand{\te}[1]{\texttt{#1}} % for programming font
+\newcommand{\eq}{=}
+\newcommand{\ps}{\mathbin{\|}} % parallel resistors
+
+% For transistor equations
+\newcommand{\VG}{V_\text{G}}
+\newcommand{\VS}{V_\text{S}}
+\newcommand{\VD}{V_\text{D}}
+\newcommand{\VGS}{V_\text{GS}}
+\newcommand{\VDS}{V_\text{DS}}
+\newcommand{\VTH}{V_\text{TH}}
+\newcommand{\VDD}{V_\text{DD}}
+
+%%% TODO Make \VI => \VIN to be consistent, same with \VOUT %%%
+\newcommand{\VI}{V_\text{IN}}
+\newcommand{\VIN}{V_\text{IN}}
+\newcommand{\VO}{V_\text{OUT}}
+\newcommand{\VOUT}{V_\text{OUT}}
+\newcommand{\VDZ}{v_{\text{D}_0}}
+\newcommand{\vt}{v_\text{T}}
+\newcommand{\id}{i_\text{D}}
+\newcommand{\vd}{v_\text{D}}
+
+% SIUNITX
+\sisetup{quotient-mode=fraction} % Output a/b as \frac{a}{b}
+
+% tikz
+\usetikzlibrary{decorations.pathreplacing}
+\ctikzset{bipoles/resistor/height=0.2}
+\ctikzset{bipoles/resistor/width=0.5}
+\ctikzset{bipoles/diode/width=0.4}
+\ctikzset{bipoles/diode/height=0.4}
+\ctikzset{monopoles/ground/width=0.15}
+
+%%% CODE ENV %%%
+
+% colors
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+% macro to select a scaled-down version of Bera Mono (for instance)
+\makeatletter
+\newcommand\BeraMonottfamily{%
+  \def\fvm@Scale{0.78}% scales the font down
+  \fontfamily{fvm}\selectfont% selects the Bera Mono font
+}
+\makeatother
+
+\lstset{ 
+  autogobble=true
+  backgroundcolor=\color{white},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}; should come as last argument
+  basicstyle=\BeraMonottfamily,        % the size of the fonts that are used for the code
+  breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+  breaklines=true,                 % sets automatic line breaking
+  captionpos=b,                    % sets the caption-position to bottom
+  commentstyle=\color{mygreen},    % comment style
+  columns=fullflexible,
+  deletekeywords={...},            % if you want to delete keywords from the given language
+  % escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+  extendedchars=false,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+  frame=single,
+  keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+  keywordstyle=\color{blue},       % keyword style
+  % morekeywords={*,...},            % if you want to add more keywords to the set
+  numbersep=5pt,                   % how far the line-numbers are from the code
+  numberstyle=\footnotesize\color{mygray}\ttfamily, % the style that is used for the line-numbers
+  rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+  showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+  showstringspaces=false,          % underline spaces within strings only
+  showtabs=false,                  % show tabs within strings adding particular underscores
+  stringstyle=\color{mymauve},     % string literal style
+  tabsize=2,	                   % sets default tabsize to 2 spaces
+  title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title  
+}

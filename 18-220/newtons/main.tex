@@ -1,0 +1,135 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\input{preamble}
+
+\pagestyle{fancy}
+
+\begin{document}
+
+\maketitle
+
+With linear circuits, we can often get by pretty easily with Ohm's law, KVL, KCL, etc... 
+But once we start talking about non-linear circuit elements, such as a diode, it seems
+like we are at a lost for tools to use.
+
+\section{The Problem}
+Let's consider the following circuit
+
+\begin{figure}[H]
+  \centering
+
+  \begin{circuitikz}
+  % Drain
+  \draw
+  (0,0) node[left] {$\VIN$}
+  to[short, *-] (1,0)
+  to[D*, v=$\vd$] (3,0)
+  to[R=$R \eq \SI{10}{\ohm}$] (5,0)
+  node[sground, rotate=90] {};
+  ;
+  \end{circuitikz}
+  \label{circuit}
+\end{figure}
+
+Suppose that
+\begin{itemize}
+  \item $\VIN = \SI{8}{\volt}$
+  \item $\id = I_s\pa{e^{\vd/\vt} - 1}$, where $I_s = \SI{1e-24}{\ampere}$, $\vt = \SI{25}{\milli\volt}$
+\end{itemize}
+
+Solve for the current through the diode.
+
+\section{A Na\"{i}ve Approach}
+Hey, KCL works most of the time, so let's try it...
+
+\begin{align*}
+  \id &= \frac{\VIN - \vd}{R} \\
+  I_s\pa{e^{\vd/\vt} - 1} &= \frac{\VIN - \vd}{R}\\
+  I_se^{\vd/\vt} + \frac{\vd}{R} &= \frac{\VIN}{R} + I_s
+\end{align*}
+
+Oh man, it doesn't look like $\vd$ is easy to solve here...so what do we do here?
+
+\clearpage
+\section{Graph it!}
+If you recall from Algebra, if we have two unknowns and two equations, we can find the intersection of the two curves to find their solution.
+We don't know $\vd, \id$, and we have equations for each, so why not graph them?
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[height=3in]{plot.png}
+\end{figure}
+
+So yeah, this works pretty well, and we can find a solution at $(\vd, \id) = (\SI{1.371}{\volt}, \SI{0.663}{\ampere})$, 
+but it can cause a lot of unnecessary strain on your calculator because it has to plot so many points.
+In addition, how did the calculator find the points in the first place?
+
+\clearpage
+\section{Newton's Method}
+In fact, even the calculator had to use some sort of numerical method to approximate the intersection of the two curves! 
+One popular and fairly reliable method is:
+
+\begin{definition}
+  \textbf{Newton's Method} is a first-order numerical approximation method to estimate the root of a function.
+  In particular, given 
+  \begin{align}
+    f(x) &= 0 \\
+    x_0 &= \text{initial guess}
+  \end{align}
+  iterate
+  \begin{equation}
+    x_{n+1} = x_n - \frac{f(x_n)}{f'(x_n)}
+  \end{equation}
+  until $\abs{f(x_n)} < \epsilon$, for some sufficiently small $\epsilon > 0$ that defines the desired accuracy.
+\end{definition}
+
+For our problem, we can define
+\begin{equation}
+  f(\vd) = I_S\pa{
+    e^{\vd/\vt} - 1
+  } - \frac{
+    \VIN - \vd
+  }{
+    R
+  } = 0
+\end{equation}
+
+We also need the derivative, 
+
+\begin{equation}
+  \dv{f(\vd)}{\vd} = 
+  \frac{I_S}{\vt}e^{\vd/\vt} 
+  + \frac{1
+  }{
+    R
+  }
+\end{equation}
+
+Now, we just need to iterate with the following iterative sequence:
+\begin{equation}
+  \begin{aligned}
+    \VDZ &= v_{\text{D}_\text{initial}} \\
+    v_{\text{D}_{i+1}} &= v_{\text{D}_i} - \frac{
+      f(v_{\text{D}_i})
+    }{
+        f'(v_{\text{D}_i})
+    }
+  \end{aligned}
+\end{equation}
+
+Choosing an initial guess of $\VDZ = \SI{1.3}{\volt}$ gives us a final convergence value of
+\begin{equation}
+  \boxed{
+    (\vd, \id) = (\SI{1.371}{\volt}, \SI{0.663}{\ampere})
+  }
+\end{equation}
+
+\clearpage
+\appendix
+\section{Implementation of Newton's Method}
+In Python because MATLAB is dying...
+
+\lstinputlisting[language=Python]{newtons.py}
+
+\end{document}
