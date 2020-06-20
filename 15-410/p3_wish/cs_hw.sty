@@ -1,0 +1,137 @@
+%%%%%%%%%%%%%%%%%%% Packages %%%%%%%%%%%%%%%%%%%
+\RequirePackage[margin=1in]{geometry}
+\RequirePackage{amsmath, amsthm, amssymb}
+\RequirePackage{amstext} % for \text macro
+\RequirePackage{array}   % for new column macro
+\RequirePackage{bm}
+\RequirePackage{bussproofs}
+\RequirePackage{commath}
+\RequirePackage{comment}
+\RequirePackage{complexity}
+\RequirePackage{enumitem}
+\RequirePackage{fancyhdr} %for the top header
+\RequirePackage{forest}
+\RequirePackage{float}
+\RequirePackage{fancyhdr}
+\RequirePackage{graphicx}
+\RequirePackage{rotating}
+\PassOptionsToPackage{hyphens}{url}\RequirePackage{hyperref} % allow for URL wrapping
+\RequirePackage{lastpage} %literally just for last page
+\RequirePackage{mathtools}
+\RequirePackage[super]{nth}
+\RequirePackage{physics}
+\RequirePackage{siunitx}
+\RequirePackage{stmaryrd}
+\RequirePackage{tikz}
+\RequirePackage{verbatim}
+
+% Enable abbreviations for the bussproofs package
+\EnableBpAbbreviations
+
+\graphicspath{{images/}}
+
+% Math mode cells
+\newcolumntype{C}{>{$}c<{$}} %
+
+% Delimiter brackets
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+\DeclarePairedDelimiter{\paren}{(}{)}
+\DeclarePairedDelimiter{\bracken}{[}{]}
+\DeclarePairedDelimiter{\bracens}{\{}{\}}
+\newcommand{\pa}[1]{\paren*{#1}}
+\newcommand{\paa}[1]{\paren{#1}}
+\newcommand{\pbra}[1]{\bracken*{#1}}
+\newcommand{\pbrc}[1]{\bracens*{#1}}
+\newcommand{\db}[1]{\llbracket{#1}\rrbracket}
+\newcommand{\bangle}[1]{\left\langle #1 \right\rangle}
+\newcommand{\banglee}[1]{\langle #1 \rangle}
+
+% Shortcuts
+\DeclareMathOperator{\Var}{Var}
+\newcommand{\te}[1]{\texttt{#1}} %for programming font
+\newcommand{\mb}[1]{\mathbf{#1}}
+\newcommand{\tat}{{\raise.17ex\hbox{$\scriptstyle\mathtt{\sim}$}}} % tilde
+\newcommand{\tac}{\textasciicircum} % XOR
+\newcommand{\drl}{\Longleftrightarrow} % ==>
+\newcommand{\lra}{\Longrightarrow} % ==>
+
+% Custom symbols
+\def\checkmark{{\tikz\fill[scale=0.4](0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;}\hspace{0.1in}} 
+
+%%% HEADERS %%%
+\def\AUTHOR{Michael You}
+\def\TITLE{What I wish I knew for \te{p3}}
+
+\author{\AUTHOR}
+\title{\TITLE}
+\date{}
+
+%% Fancy headers at top of each page
+\fancyhf{}
+\lhead{\TITLE}
+\rhead{\AUTHOR}
+\fancyfoot[C]{\thepage}
+
+%to automate the Task numbers
+\newtheorem{theorem}{Theorem}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newtheorem{problem}{Problem}[section]
+\newtheorem{example}{Example}[section]
+\newtheorem{solution}{Solution}[section]
+\newtheorem{task}{Task}[section]
+\newtheorem{tip}{Tip}[section]
+\newtheorem{claim}{Claim}
+\newtheorem{claimproof}{Claim Proof}
+
+% env shortcuts
+\newcommand{\bx}[1]{\begin{example} #1 \end{example}}
+\newcommand{\bd}[1]{\begin{definition} #1 \end{definition}}
+
+%%%%%%%%%%%%%%%%%%% CODE ENV %%%%%%%%%%%%%%%%%%%
+\RequirePackage{listings, lstautogobble}
+\RequirePackage{color}
+\RequirePackage[T1]{fontenc}
+
+% colors
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+% macro to select a scaled-down version of Bera Mono (for instance)
+\makeatletter
+\newcommand\BeraMonottfamily{
+  \def\fvm@Scale{0.80}        % scales the font down
+  \fontfamily{fvm}\selectfont % selects the Bera Mono font
+}
+\makeatother
+
+\lstset{ 
+  autogobble=true
+  backgroundcolor=\color{white},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}; should come as last argument
+  basicstyle=\BeraMonottfamily,    % the size of the fonts that are used for the code
+  breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+  breaklines=true,                 % sets automatic line breaking
+  captionpos=b,                    % sets the caption-position to bottom
+  commentstyle=\color{mygreen},    % comment style
+  columns=fullflexible,
+  deletekeywords={...},            % if you want to delete keywords from the given language
+  % escapeinside={\%*}{*)},        % if you want to add LaTeX within your code
+  extendedchars=false,             % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+  frame=single,
+  keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+  keywordstyle=\color{blue},       % keyword style
+  language=C,
+  numbersep=5pt,                   % how far the line-numbers are from the code
+  numberstyle=\footnotesize\color{mygray}\ttfamily, % the style that is used for the line-numbers
+  rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+  showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+  showstringspaces=false,          % underline spaces within strings only
+  showtabs=false,                  % show tabs within strings adding particular underscores
+  stringstyle=\color{mymauve},     % string literal style
+  tabsize=2,	                     % sets default tabsize to 2 spaces
+  title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title  
+}
