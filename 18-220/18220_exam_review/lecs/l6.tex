@@ -1,0 +1,32 @@
+\subsection*{Lecture 6}
+Power, RC circuits.
+
+\begin{enumerate}
+  \item What are initial conditions of a circuit, and why do we care about
+  them when we solve for differential equations?
+  \item If you don't by now, you should definitely know how to use KVL, KCL
+  in circuit problems.
+  \item Solve the RC step problem,
+  \begin{figure}[H]
+    \centering
+    \begin{circuitikz} 
+      \draw 
+        (0, 0) node[sground] {}
+        to[american voltage source, invert]
+        (0, 2) to[R=$R$] (2, 2)
+        to[C=$C$] (2, 0)
+        node[sground] {}
+      ;
+
+      \draw
+        (-1.5, 0.5) node[left] {0}
+        -- (-1, 0.5) -- (-1, 1.5) -- (-0.5, 1.5)
+        (-1.5, 1.5) node[left] {$V_1$}
+      ;
+    \end{circuitikz} 
+  \end{figure}
+  \item We believe in the conservation of energy, but in real life, if you
+  have an oscillation circuit, e.g. LC, it will eventually stop oscillating.
+  Where is the energy ``conserved''?
+  \item What does a capacitor behave like when it is fully charged/discharged?
+\end{enumerate}

@@ -1,0 +1,64 @@
+\subsection*{Lecture 5}
+Lab1, capacitors, parasitic capacitance in MOSFETs and effect on high
+frequency action, Thevenin and Norton equivalents.
+
+\begin{enumerate}
+  \item Why is the Manchester Encoding useful?
+  \item Why does your MOSFET have a frequency limit at which it can operate at?
+  \item Know the parallel and series capacitance formulas.
+  \item What is the equivalent capacitance of the following circuit?
+  \begin{figure}[H]
+    \centering
+    \begin{circuitikz} 
+      \draw 
+        (-1, 0) to[short, o-]
+        (0, 0) to[C=$C_1$] (2, 0)
+        to[C=$C_2$] (2, -2)
+        to[C=$C_3$] (2, -4)
+        to[C=$C_4$] (0, -4)
+        to[C=$C_5$] (0, -2)
+        to[short] (0, -1)
+        to[short, -o] (-1, -1)
+        (0, -2) to[C=$C_6$] (2, -2)
+      ;
+    \end{circuitikz} 
+  \end{figure}
+  \item What are Thevenin and Norton equivalents? Why do we use them?
+  \item Find the Thevenin and Norton equivalent for the following circuit,
+  \footnote{Do it symbolically, it will make you a stronger problem solver.
+  Otherwise, plug in some numbers for yourself}
+  \begin{figure}[H]
+    \centering
+    \begin{circuitikz}
+      \draw
+        (0, 0) to[R=$R_1$] (2, 0)
+        to[R=$R_2$] (2, -2)
+        to[short] (0, -2)
+        to[american voltage source, l=$V_1$, invert]
+        (0, 0)
+        (2, -2) to[american current source, l=$I_1$]
+        (2, -4) to[short, -o] (5, -4)
+        (4, -4) to[R=$R_4$] (4, -2)
+        to[short] (2, -2)
+        (4, -2) to[R=$R_3$]
+        (4, 0)
+        (2, 0) to[short, -o] (5, 0)
+      ;
+    \end{circuitikz}
+  \end{figure}
+  \item Why are nonlinear equations hard to solve? (Don't just say nonlinear
+  means things are complicated, try to give a more specific reason. If you
+  need a hint, think about what techniques you use to solve linear equations)
+  \item Know the charge and energy equations for a capacitor.
+\end{enumerate}
+
+\subsection*{Equations}
+Capacitor energy equations,
+\begin{equation*}
+  E = \frac{C \cdot V^2}{2}, Q = C \cdot V
+\end{equation*}
+
+Thevenin and Norton relation
+\begin{equation*}
+  V_\text{T} = I_\text{N} \cdot R_\text{EQ}
+\end{equation*}

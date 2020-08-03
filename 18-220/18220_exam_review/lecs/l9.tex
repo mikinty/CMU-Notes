@@ -1,0 +1,56 @@
+\subsection*{Lecture 9}
+Nodal analysis. MNA is basically just setting up a system of linear equations.
+
+\begin{enumerate}
+  \item If you don't already know, if you have $N$ unknowns, you need $N$
+  linearly independent equations to solve for these $N$
+  variables.\footnote{Linearly independent means you can't derive any of the
+  equations from the other set of the equations. At a high level, a linear
+  independent equation is giving us more, unique information.}
+  \item Why are the following circuits illegal?
+  \begin{itemize}
+    \item Circuit 1
+    \begin{figure}[H]
+      \centering
+      \begin{circuitikz}
+        \draw (0, 0) 
+          to[american voltage source, V=$\SI{1}{\volt}$, invert]
+          (0, 2) to[short] (2, 2) 
+          to[american voltage source, V=$\SI{2}{\volt}$]
+          (2, 0) -- (0,0)
+        ;
+      \end{circuitikz}
+    \end{figure}
+    \item Circuit 2
+    \begin{figure}[H]
+      \centering
+      \begin{circuitikz}
+        \draw (0, 0) 
+          to[american current source, l=$\SI{1}{\ampere}$]
+          (0, 2) 
+          to[american current source, l=$\SI{2}{\ampere}$]
+          (0, 4)
+        ;
+      \end{circuitikz}
+    \end{figure}
+  \end{itemize} 
+  \item When we say there is ``no true ground,'' what do we mean by that?
+  How can you use this to your advantage when solving MNA problems?
+  \item What special steps do we have to take in MNA for the following elements?
+  \begin{itemize}
+    \item Voltage source
+    \item Current source
+    \item Capacitor
+    \item Inductor
+  \end{itemize}
+  \item Understand how to use superposition to solve circuit problems.
+\end{enumerate}
+
+\subsection*{Equations}
+MNA Steps:
+\begin{enumerate}
+  \item Choose a ground 
+  \item Fill in known values 
+  \item Write dependent equations for special elements
+  \item Write full set of equation with KCL
+\end{enumerate}

@@ -1,19 +1,252 @@
 \subsection*{Formulas}
 \begin{itemize}
+  \item Ohm's law
+  \begin{equation}
+    V = IR
+    \label{eq:vir}
+  \end{equation}
+  $V$ is the voltage, $I$ is the current and $R$ is the resistance. Probably
+  the most important fundamental equation used to solve circuit problems.
+
+  \item Power
+  \begin{equation}
+    P = VI = I^2R = \frac{V^2}{R}
+  \end{equation}
+
+  \item Thevenin and Norton relation
+  \begin{equation}
+    V_\text{T} = I_\text{N} \cdot R_\text{EQ}
+    \label{eq:thev_nort}
+  \end{equation}
+
+  \item MNA Steps:
+  \begin{enumerate}
+    \item Choose a ground 
+    \item Fill in known values 
+    \item Write dependent equations for special elements
+    \item Write full set of equation with KCL
+  \end{enumerate}
+
+  \item Wave equation
+  \begin{equation}
+    \lambda = \frac{c}{f},
+    \label{eq:wave_eq}
+  \end{equation}
+  where $\lambda$ is the wavelength, $f$ is the frequency,
+  and $c = \SI{3e8}{\m/\s}$.
+
+  \item Diode equation
+  \begin{equation}
+    \iD = \IS \pa{e^{\vD/\VT} - 1}
+    \label{eq:diode_eq}
+  \end{equation}
+
+  \item Capacitor equation
+  \begin{equation}
+    i_C(t) = C \dv{V_C(t)}{t}
+    \label{eq:cap}
+  \end{equation}
+
+  \item Capacitor energy equations
+  \begin{equation}
+    E_L = \frac{1}{2}C V_C^2, Q = C \cdot V
+    \label{eq:cap_energy}
+  \end{equation}
+
+  \item Inductor equation
+  \begin{equation}
+    v_L(t) = L \dv{i_L(t)}{t}
+    \label{eq:ind}
+  \end{equation}
+
+  \item Inductor energy equations 
+  \begin{equation}
+    E_L = \frac{1}{2}LI_L^2
+    \label{eq:ind_energy}
+  \end{equation}
+
+  \item 
+  Transformer equivalent impedance
+  \begin{figure}[H]
+    \def\offsetX{6}
+    \def\offsetY{-1}
+    \centering
+    \begin{circuitikz} 
+      \draw (0, 0) node [transformer core](T){};
+      \draw
+        (T.A1) to[R=$R_1$] ++(-2, 0)
+        to[american voltage source, l_=$V_1$]
+        ($(T.A2) + (-2, 0)$) node[sground] {}
+        -- (T.A2)
+        (T.B1) to[short] ++(2, 0)
+        to[R=$R_2$] 
+        ($(T.B2) + (2, 0)$)
+        -- (T.B2)
+      ;
+
+      \draw
+        (4.5, 0) node {$\Rightarrow$}
+      ;
+
+      \draw
+        (\offsetX, \offsetY) node[sground] {}
+        to[american voltage source, V=$V_1$, invert]
+        ++(0, 2) to[R=$R_1$] ++(2, 0)
+        to[R=$\pa{\frac{N_1}{N_2}}^2R_2$]
+        ++(0, -2) -- (\offsetX, \offsetY)
+      ;
+    \end{circuitikz} 
+  \end{figure}
+
+  \item Buck converter
+  \begin{figure}[H]
+    \centering
+    \begin{circuitikz}
+      \draw (0, 0) node[sground] {}
+      to[V=$\Vin$, invert] (0,2)
+      to[nos, l=D] (2,2)
+      to[D*, invert] (2,0) node[sground] {}
+      ;
+
+      \draw (2,2)
+      to[L=$L$, i=$I_L$] (5,2) node[right] {$\Vout$}
+      to[R=$R_L$] (5,0) node[sground] {}
+      ;
+    \end{circuitikz}
+  \end{figure}
+  \begin{equation}
+    \frac{\Vout}{\Vin} = D
+    \label{eq:buck}
+  \end{equation}
+
+  \item Boost converter
+  \begin{figure}[H]
+    \centering
+    \begin{circuitikz}
+      \draw (0, 0) node[sground] {}
+      to[V=$\Vin$, invert] (0,2)
+      to[L] (2,2)
+      to[nos] (2,0) node[sground] {}
+      ;
+
+      \draw (2,2)
+      to[D*] (4, 2) -- (6,2) node[right] {$\Vout$}
+      to[R=$R_L$] (6,0) node[sground] {}
+      (4,2) to[C] (4, 0) node[sground] {}
+      ;
+    \end{circuitikz}
+  \end{figure}
+  \begin{equation}
+    \frac{\Vout}{\Vin} = \frac{1}{1-D}
+    \label{eq:boost}
+  \end{equation}
+
+  \item Flyback (Buck-Boost)
+  \begin{figure}[H]
+    \centering
+    \begin{circuitikz}
+      \draw (0, 0) node[sground] {}
+      to[V=$\Vin$, invert] (0,2)
+      to[nos] (2,2)
+      to[L] (2,0) node[sground] {}
+      ;
+
+      \draw (2,2)
+      to[D*, invert] (4, 2) -- (6,2) node[right] {$\Vout$}
+      to[R=$R_L$] (6,0) node[sground] {}
+      (4,2) to[C] (4, 0) node[sground] {}
+      ;
+    \end{circuitikz}
+  \end{figure}
+  \begin{equation}
+    \frac{\Vout}{\Vin} = \frac{-D}{1-D}
+    \label{eq:flyback}
+  \end{equation}
+
   \item Resonant frequency of LC circuit
   \begin{equation}
     \omega = \frac{1}{\sqrt{LC}}
     \label{eq:lc}
   \end{equation}
+  
+  \item Antenna equations
+  \begin{figure}[H]
+    \def\labelLambdaHeight{0.35}
+    \def\labelLengthHeight{0.7}
+    \def\antennaWidth{3}
+
+    \centering
+    \begin{circuitikz}
+      % Antenna Length
+      \draw[] (-\antennaWidth, 0) -- (\antennaWidth,0);
+
+      % Antenna bottom stick
+      \draw[] (0,0) -- (0,-0.5);
+      \draw[fill] (0,0) circle (5pt);
+
+      % Labels
+      \draw[<->] (-\antennaWidth, \labelLambdaHeight) -- (0, \labelLambdaHeight) node[fill=white, midway] {$\lambda/4$};
+      \draw[<->] (0, \labelLambdaHeight) -- (\antennaWidth, \labelLambdaHeight) node[fill=white, midway] {$\lambda/4$};
+      \draw[<->] (-\antennaWidth, \labelLengthHeight) -- (\antennaWidth, \labelLengthHeight) node[fill=white, midway] {$L$};
+    \end{circuitikz}
+    \caption{Half-wave dipole antenna}
+  \end{figure}
+  \begin{equation}
+    L = \frac{1}{2}\lambda
+    \label{eq:antenna}
+  \end{equation}
+
+  \item Coaxial cable model
+    \begin{figure}[H]
+      \centering
+      \begin{circuitikz}
+        \draw (0,0)
+        to[R=$R$, o-] (2,0)
+        to[L=$L$] (3,0) 
+        to[short, -*] (4.5,0)
+        to[short, -o] (5.5,0)
+        ;
+
+        \draw (0,-2)
+        to[short, o-*] (4.5,-2)
+        to[short, -o] (5.5,-2)
+        ;
+
+        \draw (4.5,0)
+        to[R=$G'$] (4.5,-2)
+        ;
+
+        \draw (3.5,0)
+        to[C, l_=$C'$] (3.5,-2)
+        ;
+      \end{circuitikz}
+      \caption{Model for a Coaxial Cable}
+    \end{figure}
+
+  \item Reflection coefficient for coaxial cable 
+  \begin{equation}
+    \gamma = \frac{Z_L - Z_S}{Z_L + Z_S},
+    \label{eq:refl}
+  \end{equation}
+  where $Z_L$ is the impedance of the load and $Z_S$ is the characteristic
+  impedance.
+
+  \item Hertz to radians
+  \begin{equation}
+    f = \frac{\omega}{2 \pi}
+    \label{eq:hertz_radians}
+  \end{equation}
+
   \item Decibel to absolute gain relation
   \begin{equation}
     \text{Gain}\pa{\text{dB}} = 20\log_{10}\frac{\Vout}{\Vin}
     \label{eq:gaindb}
   \end{equation}
+
   \item Canonical transfer function
   \begin{equation}
     \frac{\Vout}{\Vin} = \frac{
-      -A \jw \omega / \omega_\text{z}
+      -A \jw/\omega_\text{z}
     }{
       (1 + \jw/\omega_1)(1 + \jw/\omega_2)
     }

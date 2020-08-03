@@ -1,0 +1,53 @@
+\subsection*{Lecture 2}
+Introduction to how we view circuits, abstractions and modeling.
+
+You learn about op-amps, what they are used for, and how to solve problems
+with them in the ideal and non-ideal contexts.
+
+\begin{enumerate}
+  \item What are the assumptions for an ideal op-amp? Also mention that
+  implications they have to help us solve opamp circuit problems.
+  \item What is the transfer function ($\vo/\vi$) for an inverting op-amp?
+  \begin{figure}[H]
+    \centering
+    \begin{circuitikz} 
+      \draw 
+        (0, 0) node[op amp] (opamp) {}
+      ;
+
+      \draw 
+        (opamp.-) to[R=$R_1$] ++(-1, 0)
+          node[left] {$\vi$}
+        (opamp.-) -- ++(0, 1)
+          to[R=$R_2$] ($(opamp.out) + (0, 1.5)$)
+          -- (opamp.out)
+        (opamp.out) -- ++(0.5, 0) node[right] {$\vo$}
+      ;
+
+      \draw (opamp.+) node[sground] {};
+    \end{circuitikz}
+    \label{l2:opamp_inverting}
+  \end{figure} 
+
+  \item What happens when our opamp is not ideal, and has 
+  \begin{itemize}
+    \item Nonzero input current?
+    \item Finite input resistance?
+    \item Finite output impedance?
+  \end{itemize}
+
+  \item What is voltage/current gain?
+  \item Derive the transfer function for an inverting opamp with finite gain.
+\end{enumerate}
+
+\subsection*{Equations}
+\begin{equation}
+  V = IR
+\end{equation}
+Ohm's law, $V$ is the voltage, $I$ is the current and $R$ is the resistance.
+Probably the most important fundamental equation used to solve circuit problems.
+\begin{equation}
+  \lambda = \frac{c}{f},
+\end{equation}
+where $\lambda$ is the wavelength, $f$ is the frequency,
+and $c = \SI{3e8}{\m/\s}$.
