@@ -1,0 +1,48 @@
+\subsection*{Lecture 3}
+We learn about diodes and MOSFETs.
+
+\begin{enumerate}
+  \item A diode is made from a P and N type. Explain how these two regions build a diode.
+  \item Draw the I-V curve for a diode, and label the different regions.
+  \item We model a diode has having an exponential relationship between the current and the voltage
+  after it is on, that is 
+  \begin{equation*}
+    I \propto e^V,
+  \end{equation*}
+  but this means that if we were to turn up the $V$, the current could
+  potentially be very large. What do you expect to happen in real life if you
+  were to turn the voltage up very high across a diode, assuming you have no
+  current limiting in the power supply?
+
+  \label{l3:large_current}
+
+  \item In light of question
+  \ref{l3:large_current},
+  how do we modify a pure diode circuit to help limit the current?
+
+  %% MOSFET INTRO
+  \item What are the 3 parts of a MOSFET?
+  \item Write down the MOSFET equations and their operating regions. (You
+  don't have to memorize these, but you probably should or else you will be
+  too slow on exams)
+  \item Draw the $\IDS-\VDS$ curve for a MOSFET, with varying $\VGS$.
+  \item Draw the $\IDS-\VGS$ curve for a MOSFET, labeling $\VTH$.
+  \item What does it mean for a MOSFET to be ``on''?
+  \item Why do we say there is no current through the gate of the MOSFET?
+  \item Why do we say the triode region for a MOSFET behaves \textit{linearly}?
+
+  %% LAB
+  \item How many volts is a digital high pin when it is on in an Arduino?
+  \item In the lab, why can't you see the IR diode turn on and off? 
+\end{enumerate}
+
+\subsection*{Equations}
+The diode equation is
+\begin{equation}
+  \iD = \IS \pa{e^{\vD/\VT} - 1}.
+\end{equation}
+The N-MOSFET equations are 
+\begin{align*}
+  \ID &= \frac{1}{2}\Kn \pa{\VGS - \VTH}^2 \tag{Saturation, $\VDS > \VGS - \VTH$}\\
+  \ID &= \frac{1}{2}\Kn \pa{2\pa{\VGS - \VTH}\VDS - \VDS^2} \tag{Triode, $\VDS < \VGS - \VTH$}
+\end{align*}

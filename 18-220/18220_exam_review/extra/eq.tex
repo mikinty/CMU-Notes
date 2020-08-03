@@ -1,15 +1,39 @@
 \subsection*{Formulas}
 \begin{itemize}
+  \item Ohm's law
+  \begin{equation}
+    V = IR
+    \label{eq:vir}
+  \end{equation}
+  $V$ is the voltage, $I$ is the current and $R$ is the resistance. Probably
+  the most important fundamental equation used to solve circuit problems.
+
+  \item Wave equation
+  \begin{equation}
+    \lambda = \frac{c}{f},
+    \label{eq:wave_eq}
+  \end{equation}
+  where $\lambda$ is the wavelength, $f$ is the frequency,
+  and $c = \SI{3e8}{\m/\s}$.
+
+  \item Diode equation
+  \begin{equation*}
+    \iD = \IS \pa{e^{\vD/\VT} - 1}
+    \label{eq:diode_eq}
+  \end{equation*}
+
   \item Resonant frequency of LC circuit
   \begin{equation}
     \omega = \frac{1}{\sqrt{LC}}
     \label{eq:lc}
   \end{equation}
+
   \item Decibel to absolute gain relation
   \begin{equation}
     \text{Gain}\pa{\text{dB}} = 20\log_{10}\frac{\Vout}{\Vin}
     \label{eq:gaindb}
   \end{equation}
+
   \item Canonical transfer function
   \begin{equation}
     \frac{\Vout}{\Vin} = \frac{
