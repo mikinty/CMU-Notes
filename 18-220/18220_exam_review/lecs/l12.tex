@@ -1,0 +1,75 @@
+\subsection*{Lecture 12}
+Antennas and coaxial cables.
+
+\begin{enumerate}
+  \item How does a coaxial cable work? 
+  \item What are the reflection coefficients of a coax cable circuit with 
+  \begin{itemize}
+    \item A short circuit?
+    \item An open circuit?
+    \item A load with resistance $Z_L$?
+  \end{itemize}
+  \item How do we use reflection signals to figure out how long a coax cable is?
+  \item Why would we want to match the impedance for a coaxial cable?
+\end{enumerate}
+
+\subsection*{Equations}
+Antenna equations
+\begin{figure}[H]
+  \def\labelLambdaHeight{0.35}
+  \def\labelLengthHeight{0.7}
+  \def\antennaWidth{3}
+
+  \centering
+  \begin{circuitikz}
+    % Antenna Length
+    \draw[] (-\antennaWidth, 0) -- (\antennaWidth,0);
+
+    % Antenna bottom stick
+    \draw[] (0,0) -- (0,-0.5);
+    \draw[fill] (0,0) circle (5pt);
+
+    % Labels
+    \draw[<->] (-\antennaWidth, \labelLambdaHeight) -- (0, \labelLambdaHeight) node[fill=white, midway] {$\lambda/4$};
+    \draw[<->] (0, \labelLambdaHeight) -- (\antennaWidth, \labelLambdaHeight) node[fill=white, midway] {$\lambda/4$};
+    \draw[<->] (-\antennaWidth, \labelLengthHeight) -- (\antennaWidth, \labelLengthHeight) node[fill=white, midway] {$L$};
+  \end{circuitikz}
+  \caption{Half-wave dipole antenna}
+\end{figure}
+\begin{equation*}
+  L = \frac{1}{2}\lambda
+\end{equation*}
+
+Coaxial cable model
+  \begin{figure}[H]
+    \centering
+    \begin{circuitikz}
+      \draw (0,0)
+      to[R=$R$, o-] (2,0)
+      to[L=$L$] (3,0) 
+      to[short, -*] (4.5,0)
+      to[short, -o] (5.5,0)
+      ;
+
+      \draw (0,-2)
+      to[short, o-*] (4.5,-2)
+      to[short, -o] (5.5,-2)
+      ;
+
+      \draw (4.5,0)
+      to[R=$G'$] (4.5,-2)
+      ;
+
+      \draw (3.5,0)
+      to[C, l_=$C'$] (3.5,-2)
+      ;
+    \end{circuitikz}
+    \caption{Model for a Coaxial Cable}
+  \end{figure}
+
+Reflection coefficient for coaxial cable 
+\begin{equation*}
+  \gamma = \frac{Z_L - Z_S}{Z_L + Z_S},
+\end{equation*}
+where $Z_L$ is the impedance of the load and $Z_S$ is the characteristic
+impedance.

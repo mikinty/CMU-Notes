@@ -1,0 +1,51 @@
+\subsection*{Lecture 8}
+Inductor design, transformers.
+
+\begin{enumerate}
+  \item You have probably heard ``parasitic capacitance'' and ``parasitic capacitance''
+  many times now in this course. What do they mean? Why do we call them ``parasitic''?
+  \item What is mutual inductance?
+  \item What are transformers and why are they useful?
+  \item What is the ideal transformer model? Draw it.
+  \item How do we find the equivalent resistance of a resistor on the secondary side of a tranformer?
+  \item There are several forms of non-idealness for a transformer.
+  In our class, we consider
+  \begin{itemize}
+    \item Imperfect ($k\neq 1$)
+    \item Non-ideal (general)
+  \end{itemize}
+  for each, explain their implications and how we solve circuit problems with these non-ideal properties.
+\end{enumerate}
+
+\subsection*{Equations}
+Transformer equivalent impedance
+\begin{figure}[H]
+  \def\offsetX{6}
+  \def\offsetY{-1}
+  \centering
+  \begin{circuitikz} 
+    \draw (0, 0) node [transformer core](T){};
+    \draw
+      (T.A1) to[R=$R_1$] ++(-2, 0)
+      to[american voltage source, l_=$V_1$]
+      ($(T.A2) + (-2, 0)$) node[sground] {}
+      -- (T.A2)
+      (T.B1) to[short] ++(2, 0)
+      to[R=$R_2$] 
+      ($(T.B2) + (2, 0)$)
+      -- (T.B2)
+    ;
+
+    \draw
+      (4.5, 0) node {$\Rightarrow$}
+    ;
+
+    \draw
+      (\offsetX, \offsetY) node[sground] {}
+      to[american voltage source, V=$V_1$, invert]
+      ++(0, 2) to[R=$R_1$] ++(2, 0)
+      to[R=$\pa{\frac{N_1}{N_2}}^2R_2$]
+      ++(0, -2) -- (\offsetX, \offsetY)
+    ;
+  \end{circuitikz} 
+\end{figure}

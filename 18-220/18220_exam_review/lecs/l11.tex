@@ -1,0 +1,31 @@
+\subsection*{Lecture 11}
+Frequency domain analysis, resonance.
+
+\begin{enumerate}
+  \item Why is it useful to analyze circuits in the frequency domain?
+  \item What are the equivalent impedances for the following elements in the frequency domain?
+  \begin{itemize}
+    \item Capacitor
+    \item Inductor
+    \item Resistor
+  \end{itemize}
+  \item Draw a RC low-pass filter, and derive its transfer function
+  \item Draw a RC hi-pass filter, and derive its transfer function
+  \item How do you convert from the frequency response transfer function to
+  the phasor solution?
+  \item Why is there a spike on the RLC frequency response graph? How can we modify $R$ to change this peak?
+\end{enumerate}
+
+\subsection*{Equations}
+Complex impedances
+\begin{figure}[H]
+  \centering
+  \def\spacing{2}
+  \begin{circuitikz}  
+    \draw 
+      (0, 0) to[R=$R$] (0, -2)
+      (\spacing, 0) to[L=$\jw L$] (\spacing, -2)
+      (2*\spacing, 0) to[C=$\frac{1}{\jw C}$] (2*\spacing, -2)
+    ;
+  \end{circuitikz}  
+\end{figure}

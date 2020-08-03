@@ -1,0 +1,93 @@
+\subsection*{Lecture 10}
+LC, RLC circuits, switching power converters.
+
+\begin{enumerate}
+  \item We can use a voltage divider to create any voltage $\in [0, V]$ from
+  a voltage source with maximum voltage $V$. Why do we bother to use
+  switching power converters?
+  \item How does a switching power converter work? What are the steps, and
+  what components do we need at each step?
+  \item Draw the following converters, and derive the equations that relate
+  the input voltage, duty cycle, and output voltage.\footnote{Even though you
+  can just memorize the final equations, you are sometimes asked to derive
+  them on exams.}
+  \begin{itemize}
+    \item Buck
+    \item Boost
+    \item Flyback (Buck-Boost)
+  \end{itemize}
+  \item Draw an LC oscillator. How does it behave? Write down the
+  differential equation that dictates its operation.
+  \item In this class, the steps for solving a differential equation are 
+  \begin{enumerate}[label=\arabic*.]
+    \item Homogeneous solution, we usually assume in the form $Ae^{st}$
+    \item Particular solution
+    \item Initial Conditions
+  \end{enumerate}
+  It's a good idea to format your solutions to problems like this so it's
+  easier for you and the grader.
+  \item Draw an RLC oscillator (there are multiple forms). How is it
+	different from an LC circuit? Derive the differential equation for an RLC circuit.
+	\item Draw a overdamped, critically damped, and underdamped time response for an RLC circuit.
+\end{enumerate}
+
+\subsection*{Equations}
+Buck converter
+\begin{figure}[H]
+	\centering
+	\begin{circuitikz}
+		\draw (0, 0) node[sground] {}
+		to[V=$\Vin$, invert] (0,2)
+		to[nos, l=D] (2,2)
+		to[D*, invert] (2,0) node[sground] {}
+		;
+
+		\draw (2,2)
+		to[L=$L$, i=$I_L$] (5,2) node[right] {$\Vout$}
+		to[R=$R_L$] (5,0) node[sground] {}
+		;
+	\end{circuitikz}
+\end{figure}
+\begin{equation*}
+  \frac{\Vout}{\Vin} = D
+\end{equation*}
+Boost converter
+\begin{figure}[H]
+	\centering
+	\begin{circuitikz}
+		\draw (0, 0) node[sground] {}
+		to[V=$\Vin$, invert] (0,2)
+		to[L] (2,2)
+		to[nos] (2,0) node[sground] {}
+		;
+
+		\draw (2,2)
+		to[D*] (4, 2) -- (6,2) node[right] {$\Vout$}
+    to[R=$R_L$] (6,0) node[sground] {}
+    (4,2) to[C] (4, 0) node[sground] {}
+		;
+	\end{circuitikz}
+\end{figure}
+\begin{equation*}
+  \frac{\Vout}{\Vin} = \frac{1}{1-D}
+\end{equation*}
+Flyback (Buck-Boost)
+\begin{figure}[H]
+	\centering
+	\begin{circuitikz}
+		\draw (0, 0) node[sground] {}
+		to[V=$\Vin$, invert] (0,2)
+		to[nos] (2,2)
+		to[L] (2,0) node[sground] {}
+		;
+
+		\draw (2,2)
+		to[D*, invert] (4, 2) -- (6,2) node[right] {$\Vout$}
+    to[R=$R_L$] (6,0) node[sground] {}
+    (4,2) to[C] (4, 0) node[sground] {}
+		;
+	\end{circuitikz}
+\end{figure}
+\begin{equation*}
+  \frac{\Vout}{\Vin} = \frac{-D}{1-D}
+\end{equation*}
