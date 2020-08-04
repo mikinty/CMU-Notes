@@ -41,6 +41,13 @@
     \label{eq:diode_eq}
   \end{equation}
 
+  \item The N-MOSFET equations are 
+  \begin{align*}
+    \ID &= \frac{1}{2}\Kn \pa{\VGS - \VTH}^2 \tag{Saturation, $\VDS > \VGS - \VTH$}\\
+    \ID &= \frac{1}{2}\Kn \pa{2\pa{\VGS - \VTH}\VDS - \VDS^2} \tag{Triode, $\VDS < \VGS - \VTH$}
+  \end{align*}
+  the current is zero when the MOSFET is off, when $\VGS < \VTH$.
+
   \item Capacitor equation
   \begin{equation}
     i_C(t) = C \dv{V_C(t)}{t}
