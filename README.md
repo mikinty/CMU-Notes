@@ -5,17 +5,17 @@ If you spot any typos or revisions, feel free to submit an issue and I'll fix it
 
 ## Table of Contents
 
-- 15-410
+- [15-410](./15-410)
   - [`p3` Advice](./15-410/p3_wish.pdf)
-- 18-100
+- [18-100](./18-100)
   - [Study Guide](./18-100/18_100_Study_Guide.pdf)
-- 18-220
-  - [Exam Review Complete](./18-220/18220_exam_review/build/18220_exam_review.pdf)
+- [18-220](./18-220)
+  - [Exam Review Complete](./18-220/18220_exam_review.pdf)
   - [Exam 2 Practice](./18-220/18220_E2_Practice.pdf)
   - [Exam 2 Review](./18-220/18220_E2_Review.pdf)
-  - [Exam 3 Bode](./18-220/18220_E3_Body.pdf)
+  - [Exam 3 Bode](./18-220/18220_E3_Bode.pdf)
   - [Newton's Method](./18-220/newtons.pdf)
-- 36-217 (now 36-219)
+- [36-217 (now 36-219)](./36-217)
   - [Complete Course Notes](./36-217/36217_Notes_Complete.pdf)
 
 ## Organization
