@@ -2,7 +2,7 @@
 Inductor design, transformers.
 
 \begin{enumerate}
-  \item You have probably heard ``parasitic capacitance'' and ``parasitic capacitance''
+  \item You have probably heard ``parasitic capacitance'' and ``parasitic inductance''
   many times now in this course. What do they mean? Why do we call them ``parasitic''?
   \item What is mutual inductance?
   \item What are transformers and why are they useful?
@@ -23,7 +23,7 @@ Transformer equivalent impedance
   \def\offsetX{6}
   \def\offsetY{-1}
   \centering
-  \begin{circuitikz} 
+  \begin{circuitikz}
     \draw (0, 0) node [transformer core](T){};
     \draw
       (T.A1) to[R=$R_1$] ++(-2, 0)
@@ -31,7 +31,7 @@ Transformer equivalent impedance
       ($(T.A2) + (-2, 0)$) node[sground] {}
       -- (T.A2)
       (T.B1) to[short] ++(2, 0)
-      to[R=$R_2$] 
+      to[R=$R_2$]
       ($(T.B2) + (2, 0)$)
       -- (T.B2)
     ;
@@ -47,5 +47,5 @@ Transformer equivalent impedance
       to[R=$\pa{\frac{N_1}{N_2}}^2R_2$]
       ++(0, -2) -- (\offsetX, \offsetY)
     ;
-  \end{circuitikz} 
+  \end{circuitikz}
 \end{figure}
